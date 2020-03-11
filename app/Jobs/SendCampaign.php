@@ -5,6 +5,7 @@ namespace App\Jobs;
 use Mail;
 use App\Models\User;
 use App\Models\Campaign;
+use App\Models\SentCampaign;
 use App\Models\Template;
 use App\Mail\CampaignMail;
 use Illuminate\Bus\Queueable;
@@ -67,6 +68,11 @@ class SendCampaign implements ShouldQueue
         $this->campaign->update([
             'send' => 1
         ]);
+
+        $campSendt = new SentCampaign();
+        $campSendt->campaign_id = $this->campaign->id;
+        $campSendt->user = $this->user->username;
+        $campSendt->save();
 
         if ($this->user->preferences['notifications']) {
             Mail::to($this->user)->queue(new CampaignSendMail($this->campaign->getSubscriptions(), $this->campaign));

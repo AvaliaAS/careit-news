@@ -31,6 +31,7 @@
                         <tr>
                             <th class="text-center" style="width: 15%">{{ trans('general.id') }}</th>
                             <th style="width: 50%;">{{ trans('general.name') }}</th>
+                            <th style="width: 10%;">{{ trans('general.sent') }}</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -39,7 +40,7 @@
                             <tr>
                                 <td class="text-center">{{ $campaign->id }}</td>
                                 <td>{{ $campaign->name }}</td>
-                                <td class="text-center"><span class="label label-info"></span></td>
+                                <td class="text-center"><span class="label label-info">{{ $campaign->updated_at }}</span></td>
                                 <td class="text-center">
                                     {!! Form::open(['route' => ['campaigns.delete', $campaign], 'method' => 'DELETE']) !!}
                                     <div class="btn-group btn-group-sm" role="group" aria-label="">

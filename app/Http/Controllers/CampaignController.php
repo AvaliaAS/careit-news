@@ -24,7 +24,7 @@ class CampaignController extends Controller
         $campaigns = auth()->user()->campaigns()
             ->filter($request->all())
             ->with('mailingLists')
-            ->paginateFilter(15, ['id', 'name', 'send']);
+            ->paginateFilter(15, ['id', 'name', 'send','updated_at']);
 
         return view('campaigns.index', compact('campaigns'));
     }

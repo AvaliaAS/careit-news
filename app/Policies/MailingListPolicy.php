@@ -35,6 +35,18 @@ class MailingListPolicy
     }
 
     /**
+     * Determine whether the user can update the mailingList.
+     *
+     * @param  \App\Models\User $user
+     * @param MailingList $mailingList
+     * @return mixed
+     */
+    public function create(User $user, MailingList $mailingList)
+    {
+        return true;
+    }
+
+    /**
      * Determine whether the user can delete the mailingList.
      *
      * @param  \App\Models\User $user
@@ -77,7 +89,7 @@ class MailingListPolicy
      * @param MailingList $mailingList
      * @return mixed
      */
-    public function imoort(User $user, MailingList $mailingList)
+    public function import(User $user, MailingList $mailingList)
     {
         return $user->id === $mailingList->user_id;
     }
